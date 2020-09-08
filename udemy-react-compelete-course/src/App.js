@@ -21,7 +21,7 @@ function App() {
         </a>
         <div>
           <Person name="Mohammad" height="183"/>
-          <Person name="Sara" height="164"/>
+          <Person name="Sara" height="164">Max</Person>
           <Person name="Jackson" height="175"/>
         </div>
       </header>
