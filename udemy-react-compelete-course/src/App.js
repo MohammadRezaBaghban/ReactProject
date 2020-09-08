@@ -19,7 +19,11 @@ function App() {
         >
           Learn React
         </a>
-        <Person/>
+        <div>
+          <Person/>
+          <Person/>
+          <Person/>
+        </div>
       </header>
     </div>
   );
