@@ -20,9 +20,9 @@ function App() {
           Learn React
         </a>
         <div>
-          <Person/>
-          <Person/>
-          <Person/>
+          <Person name="Mohammad" height="183"/>
+          <Person name="Sara" height="164"/>
+          <Person name="Jackson" height="175"/>
         </div>
       </header>
     </div>
