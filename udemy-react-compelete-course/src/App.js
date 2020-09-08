@@ -12,6 +12,18 @@ class App extends Component{
       {name:"Jackson", height:"175"}
     ]
   }
+
+  clickHandler = () =>{
+    console.log("I was clicked!")
+    this.setState({
+      profile : [
+        {name:"Sascha", height:"190"},
+        {name:"Sara", height:"164"},
+        {name:"Peter", height:"123"}
+      ]
+    })
+  }
+
   render(){
     return (
       <div className="App">
@@ -32,6 +44,7 @@ class App extends Component{
             <Person name={this.state.profile[0].name} height={this.state.profile[0].height}/>
             <Person name={this.state.profile[1].name} height={this.state.profile[1].height}> Max</Person>
             <Person name={this.state.profile[2].name} height={this.state.profile[2].height}/>
+            <button onClick={this.clickHandler}>Click Me!</button>
           </div>
         </header>
       </div>
