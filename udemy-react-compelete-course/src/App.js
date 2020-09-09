@@ -10,7 +10,8 @@ class App extends Component{
       {name:"Mohammad", height:"183"},
       {name:"Sara", height:"164"},
       {name:"Jackson", height:"175"}
-    ]
+    ],
+    showPersonProfiles : false
   }
 
   style = {
@@ -42,6 +43,13 @@ class App extends Component{
     })
   }
 
+  togglePersonHandler = () => {
+    const result = !this.state.showPersonProfiles;
+    this.setState({
+      showPersonProfiles: result
+    })
+  }
+
   render(){
     return (
       <div className="App">
@@ -58,26 +66,33 @@ class App extends Component{
           >
             Learn React
           </a>
-          <div>
-            <Person 
-              name={this.state.profile[0].name}
-              height={this.state.profile[0].height}
-            />
-            <Person 
-              name={this.state.profile[1].name} 
-              height={this.state.profile[1].height}
-              changed={this.nameChangeHandler}
-            > Max</Person>
-            <Person
-             name={this.state.profile[2].name}
-             height={this.state.profile[2].height}
-             click ={()=>this.clickHandler("Haifa")}
-            />
-            <button 
-              onClick={this.clickHandler.bind(this, "Mrbh")}
-              style={this.style}
-            >Click Me!</button>
-          </div>
+          { this.state.showPersonProfiles ?
+            <div>
+              <Person 
+                name={this.state.profile[0].name}
+                height={this.state.profile[0].height}
+              />
+              <Person 
+                name={this.state.profile[1].name} 
+                height={this.state.profile[1].height}
+                changed={this.nameChangeHandler}
+              > Max</Person>
+              <Person
+              name={this.state.profile[2].name}
+              height={this.state.profile[2].height}
+              click ={()=>this.clickHandler("Haifa")}
+              />
+              <button 
+                onClick={this.clickHandler.bind(this, "Mrbh")}
+                style={this.style}
+              >Click Me!</button>
+            </div> : 
+            <p>
+              Please toggle the button to show people
+            </p>
+          }
+          <button onClick={this.togglePersonHandler}>Toggle Persons</button>
+          
         </header>
       </div>
     );
