@@ -13,6 +13,14 @@ class App extends Component{
     ]
   }
 
+  style = {
+    backgroundColor: "white",
+    font : "inherit",
+    border: "1px solid blue",
+    padding: "8px",
+    cursor: "pointer"
+  };
+
   clickHandler = (newName) =>{
     console.log("I was clicked!")
     this.setState({
@@ -65,7 +73,10 @@ class App extends Component{
              height={this.state.profile[2].height}
              click ={()=>this.clickHandler("Haifa")}
             />
-            <button onClick={this.clickHandler.bind(this, "Mrbh")}>Click Me!</button>
+            <button 
+              onClick={this.clickHandler.bind(this, "Mrbh")}
+              style={this.style}
+            >Click Me!</button>
           </div>
         </header>
       </div>
