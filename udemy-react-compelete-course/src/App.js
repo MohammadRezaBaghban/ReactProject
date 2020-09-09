@@ -13,12 +13,22 @@ class App extends Component{
     ]
   }
 
-  clickHandler = () =>{
+  clickHandler = (newName) =>{
     console.log("I was clicked!")
     this.setState({
       profile : [
         {name:"Sascha", height:"190"},
-        {name:"Sara", height:"164"},
+        {name:newName, height:"164"},
+        {name:"Peter", height:"123"}
+      ]
+    })
+  }
+
+  nameChangeHandler = (event) => {
+    this.setState({
+      profile : [
+        {name:"Sascha", height:"190"},
+        {name:event.target.value, height:"164"},
         {name:"Peter", height:"123"}
       ]
     })
@@ -41,10 +51,21 @@ class App extends Component{
             Learn React
           </a>
           <div>
-            <Person name={this.state.profile[0].name} height={this.state.profile[0].height}/>
-            <Person name={this.state.profile[1].name} height={this.state.profile[1].height}> Max</Person>
-            <Person name={this.state.profile[2].name} height={this.state.profile[2].height}/>
-            <button onClick={this.clickHandler}>Click Me!</button>
+            <Person 
+              name={this.state.profile[0].name}
+              height={this.state.profile[0].height}
+            />
+            <Person 
+              name={this.state.profile[1].name} 
+              height={this.state.profile[1].height}
+              changed={this.nameChangeHandler}
+            > Max</Person>
+            <Person
+             name={this.state.profile[2].name}
+             height={this.state.profile[2].height}
+             click ={()=>this.clickHandler("Haifa")}
+            />
+            <button onClick={this.clickHandler.bind(this, "Mrbh")}>Click Me!</button>
           </div>
         </header>
       </div>
