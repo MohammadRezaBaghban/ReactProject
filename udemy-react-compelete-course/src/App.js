@@ -6,7 +6,7 @@ import Person from './Person/Person';
 class App extends Component{
 
   state ={
-    profile : [
+    profiles : [
       {name:"Mohammad", height:"183"},
       {name:"Sara", height:"164"},
       {name:"Jackson", height:"175"}
@@ -43,17 +43,57 @@ class App extends Component{
     })
   }
 
+  deletePerson = (indexOfPerson) => {
+    let currentPersons =  this.state.profiles;
+    currentPersons.splice(indexOfPerson,1);
+    this.setState({profiles:currentPersons})
+  }
+
   togglePersonHandler = () => {
     const result = !this.state.showPersonProfiles;
-    this.setState({
-      showPersonProfiles: result
-    })
+    this.setState({showPersonProfiles: result})
   }
 
   render(){
+
+    let persons = null;
+    if(this.state.showPersonProfiles){
+      persons = (
+        <div>
+          {this.state.profiles.map((person,index)=>{
+            return <Person 
+              name={person.name}
+              height={person.height}
+              click = {() => this.deletePerson(index)}
+            />
+          })}
+          
+          <button 
+            onClick={this.clickHandler.bind(this, "Mrbh")}
+            style={this.style}
+          >Click Me!</button>
+        </div>
+      )
+    }else{
+      persons = (
+        <div>
+          <p>
+          Please toggle the button to show people
+          </p>
+        </div>
+      )
+    }
+
     return (
       <div className="App">
         <header className="App-header">
+        <button 
+            style={this.style}
+            onClick={this.togglePersonHandler}
+          >
+              Toggle Persons
+          </button>
+          {persons}
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
@@ -65,34 +105,7 @@ class App extends Component{
             rel="noopener noreferrer"
           >
             Learn React
-          </a>
-          { this.state.showPersonProfiles ?
-            <div>
-              <Person 
-                name={this.state.profile[0].name}
-                height={this.state.profile[0].height}
-              />
-              <Person 
-                name={this.state.profile[1].name} 
-                height={this.state.profile[1].height}
-                changed={this.nameChangeHandler}
-              > Max</Person>
-              <Person
-              name={this.state.profile[2].name}
-              height={this.state.profile[2].height}
-              click ={()=>this.clickHandler("Haifa")}
-              />
-              <button 
-                onClick={this.clickHandler.bind(this, "Mrbh")}
-                style={this.style}
-              >Click Me!</button>
-            </div> : 
-            <p>
-              Please toggle the button to show people
-            </p>
-          }
-          <button onClick={this.togglePersonHandler}>Toggle Persons</button>
-          
+          </a>         
         </header>
       </div>
     );
