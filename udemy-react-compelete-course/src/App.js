@@ -14,14 +14,6 @@ class App extends Component{
     showPersonProfiles : false
   }
 
-  style = {
-    backgroundColor: "white",
-    font : "inherit",
-    border: "1px solid blue",
-    padding: "8px",
-    cursor: "pointer"
-  };
-
   clickHandler = (newName) =>{
     console.log("I was clicked!")
     this.setState({
@@ -54,8 +46,19 @@ class App extends Component{
 
   render(){
 
+    let style = {
+      backgroundColor: "green",
+      color:"white",
+      font : "inherit",
+      border: "1px solid blue",
+      padding: "8px",
+      cursor: "pointer"
+    };
+    
     let persons = null;
     if(this.state.showPersonProfiles){
+
+
       persons = (
         <div>
           {this.state.profiles.map((person,index)=>{
@@ -70,10 +73,13 @@ class App extends Component{
           
           <button 
             onClick={this.clickHandler.bind(this, "Mrbh")}
-            style={this.style}
+            style={style}
           >Click Me!</button>
         </div>
       )
+
+      style.backgroundColor = 'red';
+
     }else{
       persons = (
         <div>
@@ -88,7 +94,7 @@ class App extends Component{
       <div className="App">
         <header className="App-header">
         <button 
-            style={this.style}
+            style={style}
             onClick={this.togglePersonHandler}
           >
               Toggle Persons

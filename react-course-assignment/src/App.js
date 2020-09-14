@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
+import LengthValidator from './LengthValidator/LengthValidator';
 
 class App extends Component {
 
@@ -11,7 +12,8 @@ class App extends Component {
       {name:"Mrbh"},
       {name:"Ladewig"},
       {name:"Charada"}
-    ]
+    ],
+    paragraph: "This a dummy paragraph to be used"
   }
 
   changeNameHandler = (event) =>{
@@ -22,7 +24,7 @@ class App extends Component {
         {name:"CharadaCharada"}
       ]
     })
-  }
+  } 
 
   render(){
     return (
@@ -33,6 +35,7 @@ class App extends Component {
           <UserOutput name="Mohammad" userName={this.state.profile[0].name}/>
           <UserOutput name="Sascha" userName={this.state.profile[1].name}/>
           <UserOutput name="Haifa" userName={this.state.profile[2].name}/>
+          <LengthValidator pValue={this.state.paragraph}/>
         </header>
       </div>
     );
