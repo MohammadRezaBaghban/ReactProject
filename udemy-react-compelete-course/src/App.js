@@ -33,13 +33,11 @@ class App extends Component{
     })
   }
 
-  nameChangeHandler = (event) => {
+  nameChangeHandler = (event,index) => {
+    const profiles = this.state.profiles;
+    profiles[index].name = event.target.value;
     this.setState({
-      profile : [
-        {name:"Sascha", height:"190"},
-        {name:event.target.value, height:"164"},
-        {name:"Peter", height:"123"}
-      ]
+      profiles : profiles
     })
   }
 
@@ -65,6 +63,8 @@ class App extends Component{
               name={person.name}
               height={person.height}
               click = {() => this.deletePerson(index)}
+              key={index}
+              changed = {(event) => this.nameChangeHandler(event,index)}
             />
           })}
           
