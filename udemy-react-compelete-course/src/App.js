@@ -55,9 +55,9 @@ class App extends Component{
       cursor: "pointer"
     };
     
+    let cssClassName = 'Person';
     let persons = null;
     if(this.state.showPersonProfiles){
-
 
       persons = (
         <div>
@@ -77,7 +77,6 @@ class App extends Component{
           >Click Me!</button>
         </div>
       )
-
       style.backgroundColor = 'red';
 
     }else{
@@ -90,6 +89,9 @@ class App extends Component{
       )
     }
 
+    if(this.state.profiles.length<3) {
+      cssClassName = "red";
+    }
     return (
       <div className="App">
         <header className="App-header">
@@ -101,7 +103,7 @@ class App extends Component{
           </button>
           {persons}
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
+          <p className={cssClassName}>
             Edit <code>src/App.js</code> and save to reload.
           </p>
           <a
