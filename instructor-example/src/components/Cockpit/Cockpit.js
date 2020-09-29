@@ -1,36 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
 import classes from './Cockpit.css';
 
-const cockpit = (props) =>{
+const cockpit = props => {
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect');
+    // Http request...
+    setTimeout(() => {
+      alert('Saved data to cloud!');
+    }, 1000);
+    return () => {
+      console.log('[Cockpit.js] cleanup work in useEffect');
+    };
+  }, []);
 
-    const assignedClasses = [];
-    let btnClass = '';
+  useEffect(() => {
+    console.log('[Cockpit.js] 2nd useEffect');
+    return () => {
+      console.log('[Cockpit.js] cleanup work in 2nd useEffect');
+    };
+  });
 
-    if(props.showPerson){
-        btnClass = classes.Red;
-    }
+  // useEffect();
 
-    if (props.persons.length <= 2) {
+  const assignedClasses = [];
+  let btnClass = '';
+  if (props.showPersons) {
+    btnClass = classes.Red;
+  }
+
+  if (props.personsLength <= 2) {
     assignedClasses.push(classes.red); // classes = ['red']
-    }
-
-    if (props.persons.length <= 1) {
+  }
+  if (props.personsLength <= 1) {
     assignedClasses.push(classes.bold); // classes = ['red', 'bold']
-    }
+  }
 
+  return (
+    <div className={classes.Cockpit}>
+      <h1>{props.title}</h1>
+      <p className={assignedClasses.join(' ')}>This is really working!</p>
+      <button className={btnClass} onClick={props.clicked}>
+        Toggle Persons
+      </button>
+    </div>
+  );
+};
 
-    return (
-
-        <div className={classes.Cockpit}>
-            <h1>Hi, I'm a React App from {props.title}</h1>
-            <p className={assignedClasses.join(' ')}>This is really working!</p>
-            <button className={btnClass} onClick={props.onClick}>
-            Toggle Persons
-            </button>
-        </div>
-
-    );
-
-}
-
-export default cockpit;
+export default React.memo(cockpit);
