@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-
 import Person from './Person/Person';
 
 class Persons extends PureComponent {
@@ -11,7 +10,7 @@ class Persons extends PureComponent {
   // componentWillReceiveProps(props) {
   //   console.log('[Persons.js] componentWillReceiveProps', props);
   // }
-  
+
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('[Persons.js] getSnapshotBeforeUpdate');
     return { message: 'Snapshot!' };
@@ -40,6 +39,7 @@ class Persons extends PureComponent {
           age={person.age}
           key={person.id}
           changed={event => this.props.changed(event, person.id)}
+          IsAuth = {this.props.isAuthenticated}
         />
       );
     });
